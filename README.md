@@ -30,7 +30,7 @@ Figma设计驱动的Next.js开发技能。当用户提到'根据Figma'、'按照
 ## Installation
 
 ```bash
-npx skills add https://github.com/Zekiwest/agent-skills --skill figma-driven-nextjs
+npx skills add https://github.com/richORpoverty/agent-skills --skill figma-driven-nextjs
 ```
 
 ## Usage
