@@ -1,0 +1,10 @@
+{
+  "name": "figma-driven-nextjs",
+  "description": "Figma设计驱动的Next.js开发技能。从Figma设计自动生成设计令牌、组件库和完整页面。",
+  "version": "1.0.0",
+  "author": "Your Name",
+  "tags": ["figma", "nextjs", "design-tokens", "tailwind", "supabase"],
+  "dependencies": {
+    "skills": ["vercel-react-best-practices", "web-design-guidelines"]
+  }
+}
