@@ -450,6 +450,60 @@ Figma 文件 (MCP)
 npx skills add https://github.com/Zekiwest/agent-skills --skill figma-driven-nextjs
 ```
 
+### 自动创建 Next.js 项目
+
+安装此技能时，会自动执行以下操作：
+
+1. **检测项目状态**：
+   - 如果当前目录是空目录 → 创建新的 Next.js 项目
+   - 如果当前目录已有 Next.js 项目 → 仅安装依赖和配置
+   - 如果当前目录有其他文件 → 提示错误并退出
+
+2. **创建 Next.js 项目**（空目录时）：
+   ```bash
+   npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir
+   ```
+
+3. **安装额外依赖**：
+   - `motion` - 动画库
+   - `lucide-react` - 图标库
+   - `@supabase/supabase-js` - Supabase 客户端
+
+4. **创建设计系统文件结构**：
+   ```
+   src/
+   ├── styles/
+   │   └── tokens/
+   │       ├── colors.ts       # 颜色令牌
+   │       ├── typography.ts   # 字体令牌
+   │       ├── spacing.ts      # 间距令牌
+   │       ├── shadows.ts      # 阴影令牌
+   │       └── index.ts        # 统一导出
+   ├── components/
+   │   ├── atoms/              # 原子组件
+   │   ├── molecules/          # 分子组件
+   │   ├── organisms/          # 有机体组件
+   │   ├── templates/          # 模板组件
+   │   ├── icons/              # 图标组件
+   │   └── ThemeProvider.tsx   # 主题提供者
+   └── docs/
+       └── component-mapping.md # 组件映射文件
+   ```
+
+5. **配置 Tailwind 和主题**：
+   - 更新 `tailwind.config.ts` 支持设计令牌
+   - 更新 `globals.css` 支持 Light/Dark 主题
+   - 更新 `layout.tsx` 集成 ThemeProvider
+
+### 手动运行安装脚本
+
+如果需要重新运行安装脚本：
+
+```bash
+# 在项目根目录执行
+bash .agents/skills/figma-driven-nextjs/scripts/install.sh
+```
+
 ### 重要：安装位置
 
 **技能必须安装到当前工作区根目录下才能生效。**
