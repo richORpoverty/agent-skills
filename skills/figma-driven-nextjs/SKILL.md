@@ -440,3 +440,81 @@ Figma 文件 (MCP)
 3. **Dark 模式**: 即使 Figma 没有 Dark 模式设计，也必须自动生成
 4. **组件映射**: 必须创建组件命名映射文件，保持 Figma 与代码的一致性
 5. **无障碍**: 所有组件必须符合 WCAG AA 标准
+
+---
+
+## 安装说明
+
+### 安装命令
+```bash
+npx skills add https://github.com/Zekiwest/agent-skills --skill figma-driven-nextjs
+```
+
+### 重要：安装位置
+
+**技能必须安装到当前工作区根目录下才能生效。**
+
+Trae IDE 只会扫描"当前工作区根目录"下的 `.agents` 文件夹。
+
+#### Monorepo 项目结构
+
+如果你的项目是 Monorepo 结构（如 `project/web/app/page.tsx`），请确保：
+
+1. **确认当前工作区根目录**：IDE 打开的文件夹是哪个？
+2. **安装到正确位置**：技能必须安装到工作区根目录
+
+```
+# 正确示例：工作区是 web 子项目
+project/
+├── web/                    # ← 工作区根目录
+│   ├── .agents/           # ← 技能安装位置
+│   │   └── skills/
+│   │       └── figma-driven-nextjs/
+│   ├── app/
+│   │   └── page.tsx       # ← 你打开的文件
+│   └── skills-lock.json   # ← 锁文件
+└── other-folder/
+
+# 错误示例：技能装在上一级目录
+project/
+├── .agents/               # ❌ 错误位置！IDE 扫描不到
+│   └── skills/
+├── web/                   # ← 工作区根目录
+│   ├── app/
+│   │   └── page.tsx
+│   └── (无 .agents)       # ❌ 这里没有技能
+```
+
+#### 验证安装
+
+在项目根目录执行以下命令验证技能是否正确安装：
+
+```bash
+# 查看已安装的技能
+npx skills list
+
+# 应该能看到 figma-driven-nextjs
+```
+
+#### 重新安装到正确位置
+
+如果技能安装位置错误，请在正确的工作区根目录重新执行安装命令：
+
+```bash
+cd /path/to/your/workspace/root
+npx skills add https://github.com/Zekiwest/agent-skills --skill figma-driven-nextjs
+```
+
+### 安装作用域
+
+- **Project（推荐）**: 仅当前项目可用
+- **Global**: 所有项目可用（需要管理员权限）
+
+### 依赖技能
+
+此技能依赖以下技能，建议一并安装：
+
+```bash
+npx skills add https://github.com/vercel-labs/agent-skills --skill vercel-react-best-practices
+npx skills add https://github.com/vercel-labs/agent-skills --skill web-design-guidelines
+```
